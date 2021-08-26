@@ -88,7 +88,7 @@ function addNum() {
                 let item = document.createElement('option')
                 visual.appendChild(item)
 
-                if (valores.length <= 10) {
+                if (valores.length <= 7) {
 
 
 
@@ -118,7 +118,7 @@ function addNum() {
                 }
 
                 else {
-                    window.alert('Você Perdeu por atingir 10 tentativas erradas')
+                    window.alert('Você Perdeu por atingir 7 tentativas erradas')
                     num.value = ''
                     reset()
 
