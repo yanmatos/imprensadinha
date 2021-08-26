@@ -28,17 +28,13 @@ var win = document.getElementById('win?')//mensagem das vitórias
 //número aleatório gerado
 var min = Math.ceil(1)
 var max = Math.floor(100)
-var numeroAleatorio = Math.floor(Math.random() * (max - min + 1)) + min
+var numberRandom = Math.floor(Math.random() * (max - min + 1)) + min
 
 
 var valores = []//array para armazenar os valores
 
 var iniciou = false// game start?
 
-
-
-
-console.log(numeroAleatorio)
 
 
 function start() {
@@ -59,9 +55,7 @@ function reset() {
     visual.innerHTML = ''
     num.value = ''
 
-    numeroAleatorio = Math.floor(Math.random() * (max - min + 1)) + min
-
-    console.log(numeroAleatorio)
+    numberRandom = Math.floor(Math.random() * (max - min + 1)) + min
 
     valores = []
 
@@ -88,13 +82,16 @@ function addNum() {
                 let item = document.createElement('option')
                 visual.appendChild(item)
 
-                if (valores.length <= 7) {
+                if (valores.length === 7 && valores[6] != numberRandom) {
+                    window.alert('Você Perdeu por atingir 7 tentativas erradas')
+                    num.value = ''
+                    reset()
+                }
 
-
-
-                    if (numAdd > numeroAleatorio) {
+                else {
+                    if (numAdd > numberRandom) {
                         item.text = `${numAdd} é maior que o número sorteado`
-                    } else if (numAdd == numeroAleatorio) {
+                    } else if (numAdd == numberRandom) {
                         item.text = `Parabéns, o número sorteado é ${numAdd}`
                         item.style.backgroundColor = 'green'
                         wins++
@@ -109,18 +106,13 @@ function addNum() {
 
                         }
 
-                    } else if (numAdd < numeroAleatorio) {
+                    } else if (numAdd < numberRandom) {
                         item.text = `${numAdd} é menor que o número sorteado`
                     }
 
                     num.value = ''
                     num.focus()
-                }
-
-                else {
-                    window.alert('Você Perdeu por atingir 7 tentativas erradas')
-                    num.value = ''
-                    reset()
+                    
 
                 }
 
