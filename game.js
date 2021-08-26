@@ -5,16 +5,16 @@ var num = document.getElementById('num')//input de número
 
 
 // div dos botões de start e reset
-var botoeslist = document.getElementById('botoes')
+var buttonslist = document.getElementById('botoes')
 
-var botaostart = document.getElementById('start')//botão de start
+var buttonStart = document.getElementById('start')//botão de start
 
 
 //botão reset
-var botaoreset = document.createElement('button')
-botaoreset.setAttribute('type', 'button')
-botaoreset.setAttribute('onclick', 'reset()')
-botaoreset.appendChild(document.createTextNode('Reset'))
+var buttonReset = document.createElement('button')
+buttonReset.setAttribute('type', 'button')
+buttonReset.setAttribute('onclick', 'reset()')
+buttonReset.appendChild(document.createTextNode('Reset'))
 
 
 var visual = document.getElementById('visual-part')//select do html
@@ -31,33 +31,33 @@ var max = Math.floor(100)
 var numberRandom = Math.floor(Math.random() * (max - min + 1)) + min
 
 
-var valores = []//array para armazenar os valores
+var values = []//array para armazenar os values
 
-var iniciou = false// game start?
+var started = false// game start?
 
 
 
 function start() {
-    iniciou = true
-    botoeslist.removeChild(botaostart)
-    botoeslist.appendChild(botaoreset)
+    started = true
+    buttonslist.removeChild(buttonStart)
+    buttonslist.appendChild(buttonReset)
 
 
 }
 
 
 function reset() {
-    iniciou = false
+    started = false
 
-    botoeslist.removeChild(botaoreset)
-    botoeslist.appendChild(botaostart)
+    buttonslist.removeChild(buttonReset)
+    buttonslist.appendChild(buttonStart)
 
     visual.innerHTML = ''
     num.value = ''
 
     numberRandom = Math.floor(Math.random() * (max - min + 1)) + min
 
-    valores = []
+    values = []
 
     inputPart.appendChild(num)
     inputPart.appendChild(add)
@@ -68,21 +68,21 @@ function reset() {
 
 
 function addNum() {
-    if (iniciou === true) {
+    if (started === true) {
 
         if (num.value.length !== 0 && num.value > 0 && num.value <= 100) {
 
             var numAdd = num.value
 
 
-            if (valores.indexOf(numAdd) === -1) {
+            if (values.indexOf(numAdd) === -1) {
 
-                valores.push(numAdd)
-                console.log(valores)
+                values.push(numAdd)
+                console.log(values)
                 let item = document.createElement('option')
                 visual.appendChild(item)
 
-                if (valores.length === 7 && valores[6] != numberRandom) {
+                if (values.length === 7 && values[6] != numberRandom) {
                     window.alert('Você Perdeu por atingir 7 tentativas erradas')
                     num.value = ''
                     reset()
